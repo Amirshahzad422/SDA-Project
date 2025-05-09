@@ -1,0 +1,9 @@
+
+saad@gmail.com,amir@gmail.com,Code ki Debugging complete Kr li he
+amir@gmail.com,saad@gmail.com,yes kr li and code group mn share b kr dya
+ali@gmail.com,amir@gmail.com,Do we need to update the schema before integration?
+amir@gmail.com,ali@gmail.com,Yes, minor update needed for the task collection.
+saad@gmail.com,ali@gmail.com,Frontend is ready. Can you test on your machine?
+ali@gmail.com,saad@gmail.com,Sure, I’ll clone it and run some quick tests.
+amir@gmail.com,saad@gmail.com,Let’s finalize the API response structure today.
+ali@gmail.com,saad@gmail.com,Saad let me know if need any help in code..

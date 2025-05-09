@@ -1,0 +1,14 @@
+# Ignore Visual Studio folders
+.vs/
+*.vsidx
+
+# Other common ignores
+*.user
+*.suo
+*.obj
+*.log
+*.exe
+*.pdb
+*.ipch
+*.cache
+*.tmp

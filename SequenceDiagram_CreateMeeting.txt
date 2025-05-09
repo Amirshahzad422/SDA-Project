@@ -1,0 +1,62 @@
+@startuml Create Meeting Sequence
+
+title "Create Meeting" - Sequence Diagram with Adapter Pattern
+
+actor User
+participant "UserInterface" as UI
+participant "MeetingAdapter" as MA <<interface>>
+participant "GoogleMeetingAdapter" as GMA
+participant "ZoomMeetingAdapter" as ZMA
+
+User -> UI: Select "Create Meeting"
+activate UI
+
+UI -> UI: displayMeetingMenu()
+User -> UI: Select meeting platform
+alt Google Meet selected
+    UI -> UI: createGoogleMeeting()
+    activate UI
+    
+    UI -> User: Prompt for meeting details\n(title, date, time, duration, host)
+    User -> UI: Enter meeting details
+    
+    UI -> GMA: createMeeting(title, date, time, duration, host)
+    activate GMA
+    
+    GMA -> GMA: Generate meeting ID and link
+    GMA -> GMA: addToGoogleCalendar(meetingId)
+    GMA -> GMA: sendGoogleInvitations(meetingId)
+    
+    GMA --> UI: return meeting creation status
+    deactivate GMA
+    
+    UI --> User: Display meeting details and link
+    deactivate UI
+    
+else Zoom selected
+    UI -> UI: createZoomMeeting()
+    activate UI
+    
+    UI -> User: Prompt for meeting details\n(title, date, time, duration, host)
+    User -> UI: Enter meeting details
+    
+    UI -> ZMA: createMeeting(title, date, time, duration, host)
+    activate ZMA
+    
+    ZMA -> ZMA: Generate meeting ID and link
+    ZMA -> ZMA: generateMeetingPassword(password, length)
+    ZMA -> ZMA: sendZoomInvitations(meetingId)
+    
+    ZMA --> UI: return meeting creation status
+    deactivate ZMA
+    
+    UI --> User: Display meeting details and link
+    deactivate UI
+end
+
+UI -> UI: viewAllMeetings()
+UI --> User: Display list of all meetings
+
+deactivate UI
+
+@enduml 

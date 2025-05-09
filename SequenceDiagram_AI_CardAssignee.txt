@@ -1,0 +1,62 @@
+@startuml AI Card Assignee Suggestion
+
+title "AI Card Assignee Suggestion" - Sequence Diagram
+
+actor User
+participant "UserInterface" as UI
+participant "BoardUI" as BUI
+participant "BoardManager" as BM
+participant "TrelloBoard" as TB
+participant "Card" as C
+participant "CardAIAdapter" as AI
+participant "CardPredictionData" as CPD
+
+User -> UI: Select "AI Features"
+activate UI
+
+UI -> UI: displayAIFeaturesMenu()
+User -> UI: Select "Assignee Suggestion"
+UI -> UI: assigneeSuggestion()
+
+activate UI
+UI -> User: Prompt for board name and card title
+User -> UI: Enter board and card information
+
+UI -> BM: getBoard(boardName)
+activate BM
+BM --> UI: return board
+deactivate BM
+
+UI -> TB: findCard(cardTitle)
+activate TB
+TB --> UI: return card
+deactivate TB
+
+UI -> AI: predictOptimalAssignee(card, board)
+activate AI
+
+AI -> CPD: new CardPredictionData(card, board, list)
+activate CPD
+CPD --> AI: return predictionData
+deactivate CPD
+
+AI -> AI: Analyze card data & team member\nperformance, skills, availability
+AI -> AI: Calculate compatibility scores
+AI -> AI: Sort team members by score
+
+AI --> UI: return suggested assignee
+deactivate AI
+
+UI -> User: Display suggested assignee
+UI -> User: Prompt to apply suggestion
+User -> UI: Confirm suggestion
+
+UI -> C: assignTo(suggestedAssignee)
+activate C
+C --> UI: return assignment status
+deactivate C
+
+UI --> User: Display successful assignment message
+deactivate UI
+
+@enduml 

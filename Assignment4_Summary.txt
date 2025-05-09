@@ -1,0 +1,79 @@
+# Assignment 4 Summary
+
+## Code Fixes Implemented
+
+1. Fixed ZoomMeetingAdapter.cpp:
+   - Added missing #include <cstdio> for sprintf function
+   - Corrected 'accountEmail' to 'zoomAccount' to match the class definition
+   - Fixed function signature for generateMeetingPassword to match the header declaration
+   - Added const qualifier to sendZoomInvitations to match the header declaration
+   - Corrected implementation of generateMeetingPassword to accept the required parameters
+
+2. Fixed GoogleMeetingAdapter.cpp:
+   - Added missing #include <cstdio> for sprintf function
+
+3. Created missing implementation files:
+   - ProjectManager.cpp: Implemented all methods including constructors and member management
+   - CardMLAdapter.cpp: Implemented all AI prediction methods with simulated functionality
+   - CardPredictionData.cpp: Implemented utility class for AI predictions with serialization capabilities
+   - ZoomMeetingAdapter_impl.cpp: Alternative implementation file for ZoomMeetingAdapter class
+
+4. Fixed CardMLAdapter.cpp:
+   - Added missing #include <cstdio> for sprintf function calls
+
+5. Resolved multiple definition errors:
+   - Removed duplicate implementation files from the project
+   - Ensured only one definition of each function exists
+   - Updated project file to include the correct implementation files
+
+## Persistent Linker Issues
+
+When dealing with linker errors, try these troubleshooting steps:
+
+1. Check the project file includes all implementation files correctly
+2. Ensure that no precompiled headers or other build settings are interfering
+3. Consider rebuilding the project from scratch with a clean build configuration
+4. Verify that all .cpp files use the same character encoding (UTF-8 recommended)
+5. Confirm that all required functions have exact matching signatures between .h and .cpp files
+6. Make sure no function is defined in multiple files
+
+## Sequence Diagrams Created
+
+Four sequence diagrams have been created to demonstrate the design improvements made after applying GRASP and GoF design patterns:
+
+1. **Create Meeting Sequence Diagram** (SequenceDiagram_CreateMeeting.txt)
+   - Demonstrates the Adapter pattern with GoogleMeetingAdapter and ZoomMeetingAdapter
+   - Shows how different meeting platforms are abstracted behind a common interface
+   - Highlights polymorphic behavior with platform-specific implementations
+
+2. **AI Card Assignee Suggestion Sequence Diagram** (SequenceDiagram_AI_CardAssignee.txt)
+   - Shows integration of AI module using the Adapter pattern
+   - Demonstrates how the CardAIAdapter provides predictions based on card data
+   - Illustrates interaction between UI, domain model, and AI components
+
+3. **Specialized Task Creation Sequence Diagram** (SequenceDiagram_SpecializedTaskCreation.txt)
+   - Demonstrates the Factory pattern implementation for task creation
+   - Shows how different task types (Bug, Feature, Improvement) are created
+   - Highlights polymorphic behavior and inheritance in the task hierarchy
+
+4. **Report Generation Sequence Diagram** (SequenceDiagram_ReportGeneration.txt)
+   - Implements the Strategy pattern for report generation and task estimation
+   - Shows how different estimation strategies can be selected at runtime
+   - Demonstrates how report content varies based on report type
+
+## Design Patterns Implemented
+
+1. **Adapter Pattern**
+   - MeetingAdapter (interface) with GoogleMeetingAdapter and ZoomMeetingAdapter implementations
+   - CardAIAdapter for integrating with AI/ML functionality
+
+2. **Factory Pattern**
+   - TaskFactory for creating different types of specialized tasks
+
+3. **Strategy Pattern**
+   - EstimationStrategy with SimpleEstimationStrategy and WeightedEstimationStrategy implementations
+
+4. **Composite Pattern**
+   - Board/List/Card structure for the Trello-style board management
+
+These sequence diagrams illustrate how the design patterns improve the system's maintainability, extensibility, and adherence to OO principles like the Open-Closed Principle and Single Responsibility Principle. 

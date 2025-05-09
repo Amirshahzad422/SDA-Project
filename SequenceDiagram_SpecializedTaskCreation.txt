@@ -1,0 +1,103 @@
+@startuml Specialized Task Creation
+
+title "Specialized Task Creation" - Sequence Diagram with Factory Pattern
+
+actor User
+participant "UserInterface" as UI
+participant "TaskFactory" as TF
+participant "Task" as T <<abstract>>
+participant "BugTask" as BT
+participant "FeatureTask" as FT
+participant "ImprovementTask" as IT
+participant "ProjectManager" as PM
+
+User -> UI: Select "Task Management"
+activate UI
+
+UI -> UI: displayTaskManagementMenu()
+User -> UI: Select "Create Task"
+UI -> UI: displayTaskTypesMenu()
+
+User -> UI: Select task type
+alt Bug Task
+    UI -> UI: createBugTask()
+    activate UI
+    
+    UI -> User: Prompt for bug details\n(title, description, severity, steps to reproduce)
+    User -> UI: Enter bug details
+    
+    UI -> TF: createTask("Bug", details)
+    activate TF
+    
+    TF -> BT: new BugTask(details)
+    activate BT
+    BT --> TF: return bugTask
+    deactivate BT
+    
+    TF --> UI: return task
+    deactivate TF
+    
+    UI -> PM: addTask(bugTask)
+    activate PM
+    PM --> UI: return task ID
+    deactivate PM
+    
+    UI --> User: Display task creation success
+    deactivate UI
+    
+else Feature Task
+    UI -> UI: createFeatureTask()
+    activate UI
+    
+    UI -> User: Prompt for feature details\n(title, description, priority, impact)
+    User -> UI: Enter feature details
+    
+    UI -> TF: createTask("Feature", details)
+    activate TF
+    
+    TF -> FT: new FeatureTask(details)
+    activate FT
+    FT --> TF: return featureTask
+    deactivate FT
+    
+    TF --> UI: return task
+    deactivate TF
+    
+    UI -> PM: addTask(featureTask)
+    activate PM
+    PM --> UI: return task ID
+    deactivate PM
+    
+    UI --> User: Display task creation success
+    deactivate UI
+    
+else Improvement Task
+    UI -> UI: createImprovementTask()
+    activate UI
+    
+    UI -> User: Prompt for improvement details\n(title, description, impact, effort)
+    User -> UI: Enter improvement details
+    
+    UI -> TF: createTask("Improvement", details)
+    activate TF
+    
+    TF -> IT: new ImprovementTask(details)
+    activate IT
+    IT --> TF: return improvementTask
+    deactivate IT
+    
+    TF --> UI: return task
+    deactivate TF
+    
+    UI -> PM: addTask(improvementTask)
+    activate PM
+    PM --> UI: return task ID
+    deactivate PM
+    
+    UI --> User: Display task creation success
+    deactivate UI
+end
+
+deactivate UI
+
+@enduml 

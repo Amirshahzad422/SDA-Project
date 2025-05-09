@@ -1,0 +1,1 @@
+Draw UML sequence diagrams of at least four use cases, showing interaction among software objects. Choose those sequence diagrams in which design improvements can be reflected. Design improvements were made after applying GRASP and GoF design patterns.  [4x10 Points]

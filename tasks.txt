@@ -1,0 +1,12 @@
+Write Backend,Implement core REST API endpoints with Express.js,Medium,Design UI,amir@gmail.com,saad@gmail.com,Pending
+Test Module,Perform unit and integration testing using Jest,Low,Write Backend,ali@gmail.com,amir@gmail.com,Completed
+Authentication Setup,Implement user authentication with JWT and bcrypt,High,Database Setup,ali@gmail.com,saad@gmail.com,Pending
+Error Logging,Integrate centralized error logging with Winston,Medium,Authentication Setup,amir@gmail.com,amir@gmail.com,In Progress
+Database Indexing,Optimize MongoDB collections with proper indexing,Medium,Database Setup,ali@gmail.com,ali@gmail.com,Pending
+Socket Integration,Enable real-time updates using Socket.io,High,Frontend Integration,amir@gmail.com,amir@gmail.com,Pending
+Role-Based Access,Implement RBAC for different user roles,High,Authentication Setup,ali@gmail.com,ali@gmail.com,Pending
+Task Archiving,Add feature to archive completed tasks,Low,Write Backend,amir@gmail.com,saad@gmail.com,In Progress
+Chat Integration,Add internal team chat module,Medium,Socket Integration,ali@gmail.com,amir@gmail.com,Pending
+Code Review,Conduct peer code review for latest commits,Low,,amir@gmail.com,ali@gmail.com,Pending
+Assignment 3,We have to Submit Assignment 3 tonight.,Medium,none,amir@gmail.com,amir@gmail.com,Not Started
+Assignment 4,Last time then Jan choot jye gi,High,Assignment 3,,amir@gmail.com,Not Started

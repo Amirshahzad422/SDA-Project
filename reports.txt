@@ -1,0 +1,14 @@
+Total Tasks: 5
+Completed Tasks: 1
+Efficiency: 20%
+
+Total Tasks: 5
+Completed Tasks: 1
+Efficiency: 20%Total Tasks: 1
+Completed Tasks: 0
+Efficiency: 0%
+
+Total Tasks: 9
+Completed Tasks: 1
+Efficiency: 11.1111%
+

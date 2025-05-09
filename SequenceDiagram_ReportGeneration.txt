@@ -1,0 +1,87 @@
+@startuml Report Generation
+
+title "Report Generation" - Sequence Diagram with Strategy Pattern
+
+actor User
+participant "UserInterface" as UI
+participant "ReportManager" as RM
+participant "Report" as R
+participant "ProjectManager" as PM
+participant "Task" as T
+participant "EstimationStrategy" as ES <<interface>>
+participant "SimpleEstimationStrategy" as SES
+participant "WeightedEstimationStrategy" as WES
+
+User -> UI: Select "Reports"
+activate UI
+
+UI -> UI: displayReportMenu()
+User -> UI: Select "Generate Report"
+UI -> UI: generateReport()
+
+activate UI
+UI -> User: Prompt for report type & parameters
+User -> UI: Enter report details
+
+UI -> RM: generateReport(reportType, parameters)
+activate RM
+
+RM -> R: new Report()
+activate R
+
+alt Performance Report
+    RM -> PM: getTasks()
+    activate PM
+    PM --> RM: return tasks
+    deactivate PM
+    
+    RM -> RM: analyzeTaskCompletion(tasks)
+    RM -> R: setReportContent(performanceData)
+    
+else Project Status Report
+    RM -> PM: getProjectStatus()
+    activate PM
+    PM --> RM: return status
+    deactivate PM
+    
+    RM -> R: setReportContent(statusData)
+    
+else Effort Estimation Report
+    RM -> PM: getTasks()
+    activate PM
+    PM --> RM: return tasks
+    deactivate PM
+    
+    alt Simple Estimation
+        RM -> SES: new SimpleEstimationStrategy()
+        activate SES
+        SES --> RM: return strategy
+        deactivate SES
+        
+    else Weighted Estimation
+        RM -> WES: new WeightedEstimationStrategy()
+        activate WES
+        WES --> RM: return strategy
+        deactivate WES
+    end
+    
+    RM -> T: estimateEffort(strategy)
+    activate T
+    T --> RM: return estimations
+    deactivate T
+    
+    RM -> R: setReportContent(estimationData)
+end
+
+RM -> RM: saveReport(report)
+R --> RM: return report
+deactivate R
+
+RM --> UI: return reportId
+deactivate RM
+
+UI -> UI: displayReport(reportId)
+UI --> User: Show report content
+deactivate UI
+
+@enduml 
